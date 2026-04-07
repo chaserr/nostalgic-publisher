@@ -1,0 +1,72 @@
+<h2>系统架构</h2>
+<p class="subtitle">各模块职责与数据流向</p>
+
+<div style="font-family: monospace; background: #0f1117; border-radius: 12px; padding: 28px; color: #e2e8f0; font-size: 13px; line-height: 1.8;">
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+
+    <div style="background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 16px;">
+      <div style="color: #60a5fa; font-weight: bold; margin-bottom: 8px;">⚙️ 内容生成层</div>
+      <div style="color: #94a3b8; font-size: 12px;">
+        <div>• Claude API</div>
+        <div>• 批量自动生成（cron）</div>
+        <div>• 手动指定歌名生成</div>
+        <div>• 生成后入"待审"队列</div>
+      </div>
+    </div>
+
+    <div style="background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 16px;">
+      <div style="color: #a78bfa; font-weight: bold; margin-bottom: 8px;">✍️ 审查编辑层</div>
+      <div style="color: #94a3b8; font-size: 12px;">
+        <div>• 内容预览与富文本编辑</div>
+        <div>• 选择发布平台</div>
+        <div>• 设定发布时间</div>
+        <div>• 通过 / 拒绝 / 重新生成</div>
+      </div>
+    </div>
+
+    <div style="background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 16px;">
+      <div style="color: #34d399; font-weight: bold; margin-bottom: 8px;">🚀 发布层</div>
+      <div style="color: #94a3b8; font-size: 12px;">
+        <div>• 定时任务调度（node-cron）</div>
+        <div>• 微信公众号 API</div>
+        <div>• 今日头条 API</div>
+        <div>• 可扩展更多平台</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="text-align: center; color: #475569; margin: 4px 0; font-size: 18px;">↕ ↕ ↕</div>
+
+  <div style="background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 16px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
+    <div>
+      <div style="color: #fbbf24; font-weight: bold; margin-bottom: 4px;">🗄️ 本地数据库（SQLite）</div>
+      <div style="color: #94a3b8; font-size: 12px;">内容状态（待审 / 已通过 / 已发布 / 已拒绝） · 平台账号 Token · 发布记录 · 自动生成计划</div>
+    </div>
+  </div>
+
+  <div style="background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 16px; display: flex; justify-content: space-between; align-items: center;">
+    <div>
+      <div style="color: #f87171; font-weight: bold; margin-bottom: 4px;">🖥️ Electron 壳 + React UI</div>
+      <div style="color: #94a3b8; font-size: 12px;">Dashboard · 待审队列 · 编辑器 · 发布历史 · 设置（平台账号 / AI 参数 / 自动计划）</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #334155; color: #64748b; font-size: 11px;">
+    <div style="margin-bottom: 4px; color: #94a3b8; font-weight: bold;">数据流</div>
+    <div>生成器 → SQLite（待审） → 用户审查/编辑 → SQLite（已通过+定时） → node-cron 触发 → 平台 API → SQLite（已发布）</div>
+  </div>
+
+</div>
+
+<div style="margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+  <div style="background: #1e3a2f; border: 1px solid #166534; border-radius: 8px; padding: 12px; font-size: 13px;">
+    <div style="color: #4ade80; font-weight: bold; margin-bottom: 6px;">✅ MVP 包含</div>
+    <div style="color: #86efac;">公众号 + 今日头条 · 内容生成与审查 · 定时发布</div>
+  </div>
+  <div style="background: #1e2a3a; border: 1px solid #1e40af; border-radius: 8px; padding: 12px; font-size: 13px;">
+    <div style="color: #60a5fa; font-weight: bold; margin-bottom: 6px;">🔮 后续可扩展</div>
+    <div style="color: #93c5fd;">视频号 · 抖音 · 小红书 · 视频生成</div>
+  </div>
+</div>

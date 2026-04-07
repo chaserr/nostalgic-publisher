@@ -1,0 +1,83 @@
+<h2>三种技术方案</h2>
+<p class="subtitle">选择最适合这个项目的架构</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Electron + React（推荐）</h3>
+      <p>用网页技术构建 Mac 桌面应用。React 负责 UI，Node.js 处理 API 调用和定时任务，electron-builder 打包成 .app 文件。</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>优势</h4>
+          <ul>
+            <li>开发速度快，UI 组件库丰富</li>
+            <li>OAuth 登录、HTTP 调用生态成熟</li>
+            <li>可打包为标准 Mac .app</li>
+            <li>TypeScript 保证代码质量</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>劣势</h4>
+          <ul>
+            <li>安装包较大（~150MB）</li>
+            <li>非原生 Mac 外观</li>
+            <li>内存占用比原生高</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>SwiftUI 原生 Mac App</h3>
+      <p>使用苹果官方框架开发，外观与系统完全一致，性能最佳。后端逻辑用 Swift 实现。</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>优势</h4>
+          <ul>
+            <li>原生 Mac 外观与体验</li>
+            <li>安装包小、性能最好</li>
+            <li>系统通知、菜单栏集成最佳</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>劣势</h4>
+          <ul>
+            <li>开发周期更长</li>
+            <li>第三方平台 API 库少，需手写</li>
+            <li>复杂 UI 排版比 HTML 麻烦</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Python 后端 + 本地 Web UI</h3>
+      <p>Python FastAPI 作为本地服务，浏览器作为 UI。无需安装，访问 localhost 即可使用。</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>优势</h4>
+          <ul>
+            <li>Python 生态对 AI 集成最友好</li>
+            <li>开发灵活，调试方便</li>
+            <li>AI 相关库（LangChain 等）直接用</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>劣势</h4>
+          <ul>
+            <li>不是真正的 Mac App</li>
+            <li>需要在终端启动服务</li>
+            <li>用户体验不如桌面应用</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+<h2>内容编辑器界面</h2>
+<p class="subtitle">审查时的核心操作界面——左侧编辑，右侧发布配置</p>
+
+<div class="mockup" style="max-width:900px; margin:0 auto;">
+  <div class="mockup-header">编辑器 · 《同桌的你》1994</div>
+  <div class="mockup-body" style="padding:0; overflow:hidden;">
+
+    <div style="display:flex; height:460px; font-size:12px;">
+
+      <!-- Left: Editor -->
+      <div style="flex:1; border-right:1px solid #334155; display:flex; flex-direction:column;">
+
+        <!-- Toolbar -->
+        <div style="padding:10px 16px; border-bottom:1px solid #1e293b; display:flex; gap:8px; align-items:center; background:#151b27;">
+          <div style="color:#94a3b8; font-weight:600; font-size:11px;">✍️ 内容</div>
+          <div style="flex:1;"></div>
+          <div style="background:#1e293b; color:#64748b; font-size:10px; padding:3px 8px; border-radius:4px; cursor:pointer;">B</div>
+          <div style="background:#1e293b; color:#64748b; font-size:10px; padding:3px 8px; border-radius:4px; cursor:pointer; font-style:italic;">I</div>
+          <div style="background:#3b82f622; color:#60a5fa; font-size:10px; padding:3px 10px; border-radius:4px; cursor:pointer;">🔄 重新生成</div>
+        </div>
+
+        <!-- Title -->
+        <div style="padding:12px 16px 0;">
+          <div style="color:#475569; font-size:10px; margin-bottom:4px;">标题</div>
+          <div style="background:#1e293b; border-radius:6px; padding:8px 12px; color:#e2e8f0; font-size:13px; font-weight:600;">《同桌的你》1994</div>
+        </div>
+
+        <!-- Content -->
+        <div style="padding:12px 16px; flex:1; overflow:hidden;">
+          <div style="color:#475569; font-size:10px; margin-bottom:4px;">正文</div>
+          <div style="background:#1e293b; border-radius:6px; padding:12px; color:#cbd5e1; font-size:12px; line-height:1.8; height:calc(100% - 24px); overflow:hidden;">
+            <p style="margin:0 0 8px;">高三最后一个夏天，班里有人把这首歌刻成磁带，悄悄放在了她课桌里。没有署名。</p>
+            <p style="margin:0 0 8px;">毕业典礼那天，她问了所有人，没人承认。后来大家各奔东西，这件事就这样烂在了1994年的夏天。</p>
+            <p style="margin:0; color:#6366f1; font-style:italic;">"谁娶了多愁善感的你，谁看了你的日记。"</p>
+            <p style="margin:8px 0 0; color:#64748b;">你当年藏起来没说出口的话，是什么？</p>
+          </div>
+        </div>
+
+        <!-- Word count -->
+        <div style="padding:6px 16px; border-top:1px solid #1e293b; color:#475569; font-size:10px; background:#151b27;">
+          字数：186 字 &nbsp;·&nbsp; 预计阅读：1 分钟
+        </div>
+      </div>
+
+      <!-- Right: Publish config -->
+      <div style="width:240px; display:flex; flex-direction:column; background:#0f1117;">
+
+        <!-- Platforms -->
+        <div style="padding:14px 16px; border-bottom:1px solid #1e293b;">
+          <div style="color:#94a3b8; font-size:10px; font-weight:600; margin-bottom:10px;">发布平台</div>
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <div style="display:flex; align-items:center; gap:8px; background:#1e293b; border-radius:6px; padding:7px 10px;">
+              <div style="width:14px; height:14px; background:#22c55e; border-radius:3px; flex-shrink:0;"></div>
+              <div style="color:#e2e8f0; font-size:11px; flex:1;">微信公众号</div>
+              <div style="width:28px; height:14px; background:#22c55e; border-radius:7px; position:relative;">
+                <div style="width:12px; height:12px; background:white; border-radius:50%; position:absolute; right:1px; top:1px;"></div>
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; background:#1e293b; border-radius:6px; padding:7px 10px;">
+              <div style="width:14px; height:14px; background:#22c55e; border-radius:3px; flex-shrink:0;"></div>
+              <div style="color:#e2e8f0; font-size:11px; flex:1;">今日头条</div>
+              <div style="width:28px; height:14px; background:#22c55e; border-radius:7px; position:relative;">
+                <div style="width:12px; height:12px; background:white; border-radius:50%; position:absolute; right:1px; top:1px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Schedule -->
+        <div style="padding:14px 16px; border-bottom:1px solid #1e293b;">
+          <div style="color:#94a3b8; font-size:10px; font-weight:600; margin-bottom:10px;">发布时间</div>
+          <div style="display:flex; gap:6px; margin-bottom:8px;">
+            <div style="background:#6366f122; color:#818cf8; font-size:10px; padding:4px 8px; border-radius:5px; cursor:pointer; border:1px solid #6366f1;">定时发布</div>
+            <div style="background:#1e293b; color:#64748b; font-size:10px; padding:4px 8px; border-radius:5px; cursor:pointer;">立即发布</div>
+          </div>
+          <div style="background:#1e293b; border-radius:6px; padding:8px 10px;">
+            <div style="color:#64748b; font-size:10px; margin-bottom:4px;">日期</div>
+            <div style="color:#e2e8f0; font-size:11px;">2026年4月10日（周四）</div>
+            <div style="color:#64748b; font-size:10px; margin:6px 0 4px;">时间</div>
+            <div style="color:#e2e8f0; font-size:11px;">20:30</div>
+          </div>
+        </div>
+
+        <!-- Tags -->
+        <div style="padding:14px 16px; flex:1;">
+          <div style="color:#94a3b8; font-size:10px; font-weight:600; margin-bottom:8px;">标签</div>
+          <div style="display:flex; flex-wrap:wrap; gap:4px;">
+            <div style="background:#1e293b; color:#94a3b8; font-size:9px; padding:3px 8px; border-radius:12px;">暗恋</div>
+            <div style="background:#1e293b; color:#94a3b8; font-size:9px; padding:3px 8px; border-radius:12px;">90年代</div>
+            <div style="background:#1e293b; color:#94a3b8; font-size:9px; padding:3px 8px; border-radius:12px;">毕业</div>
+            <div style="background:#1e293b22; color:#475569; font-size:9px; padding:3px 8px; border-radius:12px; border:1px dashed #334155;">+ 添加</div>
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div style="padding:12px 16px; border-top:1px solid #1e293b; display:flex; flex-direction:column; gap:6px;">
+          <div style="background:#6366f1; color:white; font-size:11px; font-weight:600; padding:8px; border-radius:6px; text-align:center; cursor:pointer;">✓ 通过并排期</div>
+          <div style="background:#1e293b; color:#ef4444; font-size:11px; padding:6px; border-radius:6px; text-align:center; cursor:pointer;">✕ 拒绝此内容</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
