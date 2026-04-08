@@ -1,4 +1,4 @@
-import Anthropic from '@anthropic-ai/sdk'
+import OpenAI from 'openai'
 import type { SettingsDB } from '../db/settings'
 
 const SONG_LIBRARY = [
@@ -19,6 +19,36 @@ const SONG_LIBRARY = [
   { name: '阳光总在风雨后', year: 1999 },
 ]
 
+export type AiProvider = 'deepseek' | 'openai' | 'kimi'
+
+interface ProviderConfig {
+  label: string
+  baseURL: string
+  model: string
+  settingKey: string
+}
+
+export const AI_PROVIDERS: Record<AiProvider, ProviderConfig> = {
+  deepseek: {
+    label: 'DeepSeek',
+    baseURL: 'https://api.deepseek.com',
+    model: 'deepseek-chat',
+    settingKey: 'deepseek_api_key',
+  },
+  openai: {
+    label: 'OpenAI',
+    baseURL: 'https://api.openai.com/v1',
+    model: 'gpt-4o-mini',
+    settingKey: 'openai_api_key',
+  },
+  kimi: {
+    label: 'Kimi (月之暗面)',
+    baseURL: 'https://api.moonshot.cn/v1',
+    model: 'moonshot-v1-8k',
+    settingKey: 'kimi_api_key',
+  },
+}
+
 interface GeneratedDraft {
   song_name: string
   year: number
@@ -30,17 +60,21 @@ export class GeneratorService {
   constructor(private settingsDB: SettingsDB) {}
 
   async generate(songName?: string): Promise<GeneratedDraft> {
-    const apiKey = this.settingsDB.get('claude_api_key')
-    if (!apiKey) throw new Error('Claude API Key 未配置，请在设置中填写')
+    const providerName = (this.settingsDB.get('ai_provider') ?? 'deepseek') as AiProvider
+    const providerConfig = AI_PROVIDERS[providerName]
+    if (!providerConfig) throw new Error(`未知 AI 平台: ${providerName}`)
+
+    const apiKey = this.settingsDB.get(providerConfig.settingKey)
+    if (!apiKey) throw new Error(`${providerConfig.label} API Key 未配置，请在设置中填写`)
 
     const song = songName
       ? SONG_LIBRARY.find((s) => s.name === songName) ?? { name: songName, year: 2000 }
       : SONG_LIBRARY[Math.floor(Math.random() * SONG_LIBRARY.length)]
 
-    const client = new Anthropic({ apiKey })
+    const client = new OpenAI({ apiKey, baseURL: providerConfig.baseURL })
 
-    const message = await client.messages.create({
-      model: 'claude-sonnet-4-6',
+    const response = await client.chat.completions.create({
+      model: providerConfig.model,
       max_tokens: 1024,
       messages: [
         {
@@ -62,9 +96,9 @@ content 是纯文本正文（包含引用歌词和结尾问句）
       ],
     })
 
-    const text = message.content[0].type === 'text' ? message.content[0].text : ''
+    const text = response.choices[0]?.message?.content ?? ''
     const jsonMatch = text.match(/\{[\s\S]*\}/)
-    if (!jsonMatch) throw new Error('Claude 返回格式异常')
+    if (!jsonMatch) throw new Error(`${providerConfig.label} 返回格式异常`)
 
     const data = JSON.parse(jsonMatch[0])
     return {

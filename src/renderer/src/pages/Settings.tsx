@@ -1,7 +1,26 @@
 import { useEffect, useState } from 'react'
 
+type AiProvider = 'deepseek' | 'openai' | 'kimi'
+
+const AI_PROVIDERS: { value: AiProvider; label: string; placeholder: string }[] = [
+  { value: 'deepseek', label: 'DeepSeek', placeholder: 'sk-...' },
+  { value: 'openai', label: 'OpenAI', placeholder: 'sk-...' },
+  { value: 'kimi', label: 'Kimi (月之暗面)', placeholder: 'sk-...' },
+]
+
+const API_KEY_SETTINGS: Record<AiProvider, string> = {
+  deepseek: 'deepseek_api_key',
+  openai: 'openai_api_key',
+  kimi: 'kimi_api_key',
+}
+
 export function Settings() {
-  const [claudeKey, setClaudeKey] = useState('')
+  const [aiProvider, setAiProvider] = useState<AiProvider>('deepseek')
+  const [apiKeys, setApiKeys] = useState<Record<AiProvider, string>>({
+    deepseek: '',
+    openai: '',
+    kimi: '',
+  })
   const [wechatAppId, setWechatAppId] = useState('')
   const [wechatSecret, setWechatSecret] = useState('')
   const [autoSchedule, setAutoSchedule] = useState('0 7 * * *')
@@ -12,13 +31,21 @@ export function Settings() {
 
   useEffect(() => {
     Promise.all([
-      window.api.getSetting('claude_api_key'),
+      window.api.getSetting('ai_provider'),
+      window.api.getSetting('deepseek_api_key'),
+      window.api.getSetting('openai_api_key'),
+      window.api.getSetting('kimi_api_key'),
       window.api.getSetting('wechat_app_id'),
       window.api.getSetting('auto_schedule'),
       window.api.getSetting('auto_generate_count'),
       window.api.listPlatforms(),
-    ]).then(([key, appId, schedule, count, platforms]) => {
-      if (key) setClaudeKey(key)
+    ]).then(([provider, dsKey, oaiKey, kimiKey, appId, schedule, count, platforms]) => {
+      if (provider) setAiProvider(provider as AiProvider)
+      setApiKeys({
+        deepseek: dsKey ?? '',
+        openai: oaiKey ?? '',
+        kimi: kimiKey ?? '',
+      })
       if (appId) setWechatAppId(appId)
       if (schedule) setAutoSchedule(schedule)
       if (count) setAutoCount(count)
@@ -28,7 +55,8 @@ export function Settings() {
   }, [])
 
   async function saveGeneral() {
-    await window.api.setSetting('claude_api_key', claudeKey)
+    await window.api.setSetting('ai_provider', aiProvider)
+    await window.api.setSetting(API_KEY_SETTINGS[aiProvider], apiKeys[aiProvider])
     await window.api.setSetting('auto_schedule', autoSchedule)
     await window.api.setSetting('auto_generate_count', autoCount)
     setSaved(true)
@@ -53,23 +81,50 @@ export function Settings() {
     setWechatStatus('disconnected')
   }
 
+  const selectedProvider = AI_PROVIDERS.find((p) => p.value === aiProvider)!
+
   return (
     <div className="p-6 max-w-2xl space-y-8">
       <h2 className="text-xl font-bold">设置</h2>
 
-      {/* Claude API */}
+      {/* AI 平台 */}
       <section className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5">
         <h3 className="font-semibold mb-4">AI 内容生成</h3>
+
+        {/* 平台选择 */}
         <label className="block mb-4">
-          <span className="text-xs text-gray-500 block mb-1">Claude API Key</span>
+          <span className="text-xs text-gray-500 block mb-1">AI 平台</span>
+          <div className="flex gap-2">
+            {AI_PROVIDERS.map((p) => (
+              <button
+                key={p.value}
+                onClick={() => setAiProvider(p.value)}
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors border ${
+                  aiProvider === p.value
+                    ? 'bg-blue-600 text-white border-blue-600'
+                    : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 border-transparent hover:border-gray-300'
+                }`}
+              >
+                {p.label}
+              </button>
+            ))}
+          </div>
+        </label>
+
+        {/* 当前平台的 API Key */}
+        <label className="block mb-4">
+          <span className="text-xs text-gray-500 block mb-1">
+            {selectedProvider.label} API Key
+          </span>
           <input
             type="password"
-            value={claudeKey}
-            onChange={(e) => setClaudeKey(e.target.value)}
-            placeholder="sk-ant-..."
+            value={apiKeys[aiProvider]}
+            onChange={(e) => setApiKeys({ ...apiKeys, [aiProvider]: e.target.value })}
+            placeholder={selectedProvider.placeholder}
             className="w-full px-3 py-2 text-sm bg-gray-100 dark:bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </label>
+
         <div className="grid grid-cols-2 gap-4 mb-4">
           <label>
             <span className="text-xs text-gray-500 block mb-1">自动生成计划 (cron)</span>
