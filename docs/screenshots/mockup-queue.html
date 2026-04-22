@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>老歌发布 - 待审队列</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+</style>
+</head>
+<body class="bg-gray-50">
+<div class="flex h-screen">
+  <!-- Sidebar -->
+  <div class="w-48 h-full flex flex-col bg-white border-r border-gray-200">
+    <div class="px-4 py-5">
+      <h1 class="text-sm font-bold text-gray-900">🎵 老歌发布</h1>
+    </div>
+    <nav class="flex-1 px-2">
+      <a href="#" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm mb-1 text-gray-600">
+        <span>📊</span><span>仪表盘</span>
+      </a>
+      <a href="#" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm mb-1 bg-blue-50 text-blue-600 font-medium">
+        <span>📝</span><span>待审队列</span>
+      </a>
+      <a href="#" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm mb-1 text-gray-600">
+        <span>📖</span><span>发布历史</span>
+      </a>
+      <a href="#" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm mb-1 text-gray-600">
+        <span>⚙️</span><span>设置</span>
+      </a>
+    </nav>
+    <div class="px-4 py-3 border-t border-gray-200">
+      <button class="flex items-center gap-2 text-xs text-gray-500">
+        <span>🌙</span><span>深色模式</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="flex-1 overflow-y-auto p-6">
+    <div class="max-w-4xl">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-bold text-gray-900">待审队列</h2>
+        <div class="flex gap-2">
+          <input placeholder="歌曲名称（可选）" class="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 w-40" />
+          <button class="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg font-medium">生成新内容</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <!-- Card 1 -->
+        <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+          <div class="flex items-start justify-between mb-3">
+            <div>
+              <span class="text-xs text-gray-400">1994 · 同桌的你</span>
+              <h3 class="text-sm font-semibold text-gray-800 mt-0.5">《同桌的你》1994 · 那年夏天，她坐在我右边</h3>
+            </div>
+            <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full ml-2 flex-shrink-0">待审</span>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed mb-4 line-clamp-3">夏天的傍晚，教室里还有几个同学在做题。风从窗外吹进来，带着操场上的草香。她的铅笔轻轻划过作业本，"你好像那匆匆翻过的日历"，我没有抬头，心跳得很快……你还记得那个夏天吗？</p>
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-gray-400">刚刚生成</span>
+            <div class="flex gap-2">
+              <button class="text-xs text-red-500 hover:underline">拒绝</button>
+              <button class="text-xs bg-blue-600 text-white px-3 py-1 rounded-lg">审核 →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+          <div class="flex items-start justify-between mb-3">
+            <div>
+              <span class="text-xs text-gray-400">1997 · 朋友</span>
+              <h3 class="text-sm font-semibold text-gray-800 mt-0.5">《朋友》1997 · 绿皮车上的那个背影</h3>
+            </div>
+            <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full ml-2 flex-shrink-0">待审</span>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed mb-4 line-clamp-3">毕业那年，我们在车站道别。绿皮火车缓缓开动，他站在月台上挥手，"朋友一生一起走，那些日子不再有"。我知道，有些人一别就是永远……你有多久没联系那个老朋友了？</p>
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-gray-400">2分钟前</span>
+            <div class="flex gap-2">
+              <button class="text-xs text-red-500 hover:underline">拒绝</button>
+              <button class="text-xs bg-blue-600 text-white px-3 py-1 rounded-lg">审核 →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+          <div class="flex items-start justify-between mb-3">
+            <div>
+              <span class="text-xs text-gray-400">2002 · 蜗牛</span>
+              <h3 class="text-sm font-semibold text-gray-800 mt-0.5">《蜗牛》2002 · 高三教室里偷听的那首歌</h3>
+            </div>
+            <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full ml-2 flex-shrink-0">待审</span>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed mb-4 line-clamp-3">高三的午休，同桌把一只耳机塞给我。"我要一步一步往上爬"，音量很小，却盖过了整个教室的嘈杂。那段时间，这首歌是我唯一的出口……你高三时有没有一首只属于自己的歌？</p>
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-gray-400">5分钟前</span>
+            <div class="flex gap-2">
+              <button class="text-xs text-red-500 hover:underline">拒绝</button>
+              <button class="text-xs bg-blue-600 text-white px-3 py-1 rounded-lg">审核 →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 - empty state hint -->
+        <div class="bg-white border-2 border-dashed border-gray-200 rounded-xl p-5 flex flex-col items-center justify-center text-center">
+          <p class="text-3xl mb-2">🎵</p>
+          <p class="text-sm text-gray-400">输入歌名或直接点击<br/>「生成新内容」</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

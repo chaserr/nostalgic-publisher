@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>老歌发布 - 仪表盘</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+  .app { display: flex; height: 100vh; background: #f9fafb; }
+</style>
+</head>
+<body class="bg-gray-50">
+<div class="app">
+  <!-- Sidebar -->
+  <div class="w-48 h-full flex flex-col bg-white border-r border-gray-200">
+    <div class="px-4 py-5">
+      <h1 class="text-sm font-bold text-gray-900">🎵 老歌发布</h1>
+    </div>
+    <nav class="flex-1 px-2">
+      <a href="#" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm mb-1 bg-blue-50 text-blue-600 font-medium">
+        <span>📊</span><span>仪表盘</span>
+      </a>
+      <a href="#" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm mb-1 text-gray-600 hover:bg-gray-100">
+        <span>📝</span><span>待审队列</span>
+      </a>
+      <a href="#" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm mb-1 text-gray-600 hover:bg-gray-100">
+        <span>📖</span><span>发布历史</span>
+      </a>
+      <a href="#" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm mb-1 text-gray-600 hover:bg-gray-100">
+        <span>⚙️</span><span>设置</span>
+      </a>
+    </nav>
+    <div class="px-4 py-3 border-t border-gray-200">
+      <button class="flex items-center gap-2 text-xs text-gray-500 hover:text-gray-700">
+        <span>🌙</span><span>深色模式</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="flex-1 overflow-y-auto">
+    <div class="p-6 max-w-3xl">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-bold text-gray-900">仪表盘</h2>
+        <button class="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg font-medium">
+          + 生成新内容
+        </button>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-3 gap-4 mb-8">
+        <div class="bg-white border border-gray-200 rounded-xl p-4">
+          <div class="text-3xl font-bold text-gray-800">3</div>
+          <div class="text-sm text-gray-500 mt-1">待审</div>
+        </div>
+        <div class="bg-white border border-gray-200 rounded-xl p-4">
+          <div class="text-3xl font-bold text-gray-800">5</div>
+          <div class="text-sm text-gray-500 mt-1">已排期</div>
+        </div>
+        <div class="bg-white border border-gray-200 rounded-xl p-4">
+          <div class="text-3xl font-bold text-gray-800">28</div>
+          <div class="text-sm text-gray-500 mt-1">已发布</div>
+        </div>
+      </div>
+
+      <!-- Upcoming -->
+      <div>
+        <h3 class="text-sm font-semibold text-gray-500 mb-3">即将发布</h3>
+        <div class="space-y-2">
+          <div class="flex items-center gap-3 bg-white border border-gray-200 rounded-lg px-4 py-3">
+            <div class="w-2 h-2 bg-indigo-400 rounded-full flex-shrink-0"></div>
+            <span class="flex-1 text-sm text-gray-800">《同桌的你》1994 · 那年夏天，她坐在我右边</span>
+            <span class="text-xs text-gray-400">4/9 07:00</span>
+          </div>
+          <div class="flex items-center gap-3 bg-white border border-gray-200 rounded-lg px-4 py-3">
+            <div class="w-2 h-2 bg-indigo-400 rounded-full flex-shrink-0"></div>
+            <span class="flex-1 text-sm text-gray-800">《朋友》1997 · 绿皮车上的那个背影</span>
+            <span class="text-xs text-gray-400">4/10 07:00</span>
+          </div>
+          <div class="flex items-center gap-3 bg-white border border-gray-200 rounded-lg px-4 py-3">
+            <div class="w-2 h-2 bg-indigo-400 rounded-full flex-shrink-0"></div>
+            <span class="flex-1 text-sm text-gray-800">《童年》1983 · 操场边的那棵老槐树</span>
+            <span class="text-xs text-gray-400">4/11 07:00</span>
+          </div>
+          <div class="flex items-center gap-3 bg-white border border-gray-200 rounded-lg px-4 py-3">
+            <div class="w-2 h-2 bg-indigo-400 rounded-full flex-shrink-0"></div>
+            <span class="flex-1 text-sm text-gray-800">《心动》1999 · 毕业晚会前夜的走廊</span>
+            <span class="text-xs text-gray-400">4/12 07:00</span>
+          </div>
+          <div class="flex items-center gap-3 bg-white border border-gray-200 rounded-lg px-4 py-3">
+            <div class="w-2 h-2 bg-indigo-400 rounded-full flex-shrink-0"></div>
+            <span class="flex-1 text-sm text-gray-800">《蜗牛》2002 · 高三教室里偷听的那首歌</span>
+            <span class="text-xs text-gray-400">4/13 07:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

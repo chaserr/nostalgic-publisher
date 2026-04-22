@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>老歌发布 - 设置</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+</style>
+</head>
+<body class="bg-gray-50">
+<div class="flex h-screen">
+  <!-- Sidebar -->
+  <div class="w-48 h-full flex flex-col bg-white border-r border-gray-200">
+    <div class="px-4 py-5">
+      <h1 class="text-sm font-bold text-gray-900">🎵 老歌发布</h1>
+    </div>
+    <nav class="flex-1 px-2">
+      <a href="#" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm mb-1 text-gray-600">
+        <span>📊</span><span>仪表盘</span>
+      </a>
+      <a href="#" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm mb-1 text-gray-600">
+        <span>📝</span><span>待审队列</span>
+      </a>
+      <a href="#" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm mb-1 text-gray-600">
+        <span>📖</span><span>发布历史</span>
+      </a>
+      <a href="#" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm mb-1 bg-blue-50 text-blue-600 font-medium">
+        <span>⚙️</span><span>设置</span>
+      </a>
+    </nav>
+    <div class="px-4 py-3 border-t border-gray-200">
+      <button class="flex items-center gap-2 text-xs text-gray-500">
+        <span>🌙</span><span>深色模式</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="flex-1 overflow-y-auto p-6">
+    <div class="max-w-2xl space-y-8">
+      <h2 class="text-xl font-bold text-gray-900">设置</h2>
+
+      <!-- AI 平台 -->
+      <section class="bg-white border border-gray-200 rounded-xl p-5">
+        <h3 class="font-semibold mb-4 text-gray-800">AI 内容生成</h3>
+
+        <label class="block mb-4">
+          <span class="text-xs text-gray-500 block mb-2">AI 平台</span>
+          <div class="flex gap-2">
+            <button class="px-3 py-1.5 rounded-lg text-sm font-medium border bg-blue-600 text-white border-blue-600">DeepSeek</button>
+            <button class="px-3 py-1.5 rounded-lg text-sm font-medium border bg-gray-100 text-gray-600 border-transparent">OpenAI</button>
+            <button class="px-3 py-1.5 rounded-lg text-sm font-medium border bg-gray-100 text-gray-600 border-transparent">Kimi (月之暗面)</button>
+          </div>
+        </label>
+
+        <label class="block mb-4">
+          <span class="text-xs text-gray-500 block mb-1">DeepSeek API Key</span>
+          <input type="password" value="sk-xxxxxxxxxxxxxxxxxxxxxxxx" class="w-full px-3 py-2 text-sm bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </label>
+
+        <div class="grid grid-cols-2 gap-4 mb-4">
+          <label>
+            <span class="text-xs text-gray-500 block mb-1">自动生成计划 (cron)</span>
+            <input value="0 7 * * *" class="w-full px-3 py-2 text-sm bg-gray-100 rounded-lg focus:outline-none" />
+            <span class="text-xs text-gray-400 mt-1 block">示例：每天07:00 = 0 7 * * *</span>
+          </label>
+          <label>
+            <span class="text-xs text-gray-500 block mb-1">每次生成数量（最多5）</span>
+            <input type="number" value="3" class="w-full px-3 py-2 text-sm bg-gray-100 rounded-lg focus:outline-none" />
+          </label>
+        </div>
+        <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-lg font-medium">保存</button>
+      </section>
+
+      <!-- WeChat -->
+      <section class="bg-white border border-gray-200 rounded-xl p-5">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-semibold text-gray-800">微信公众号</h3>
+          <span class="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-600">已连接</span>
+        </div>
+        <button class="text-sm text-red-500 hover:underline">断开连接</button>
+      </section>
+    </div>
+  </div>
+</div>
+</body>
+</html>
